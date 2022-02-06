@@ -2,6 +2,7 @@ import pyttsx3
 import speech_recognition as sr
 import datetime
 import wikipedia as wiki
+import webbrowser
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -47,12 +48,42 @@ def takeCommand():
 if __name__ == "__main__":
     greeting()
     while True:
+        # Logic to execute tasks based on query.
         query = takeCommand().lower()
-        # Logic to execute tasks based on query
 
+        # Functionalities.
+
+        # Wiki Searches.
         if 'wikipedia' in query:
             speak('Searching Wikipedia')
             query = query.replace('wikipedia', '')
             results = wiki.summary(query, sentences=2)
             speak("According to wikipedia,")
             speak(results)
+
+        # Definitions.
+        elif 'what is' in query:
+            speak('Searching Wikipedia')
+            query = query.replace('what is', '')
+            print(query)
+            results = wiki.summary(query, sentences=2)
+            speak("According to wikipedia,")
+            speak(results)
+
+        # Open YouTube.
+        elif 'open youtube' in query:
+            speak("Okay. YouTube opening now.")
+            webbrowser.open('youtube.com')
+            # break
+
+        # Open StackOverflow.
+        elif 'open stack overflow' in query:
+            speak("Okay. StackOverflow opening now.")
+            webbrowser.open('stackoverflow.com')
+            # break
+
+        # Bye Note.
+        # elif 'bye' or 'good bye' or 'goodbye' or 'tata' in query:
+        #     speak('Call me if you need anything. Have a nice day.')
+        #     speak('Bye!')
+        #     exit()
