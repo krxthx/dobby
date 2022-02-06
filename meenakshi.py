@@ -49,3 +49,10 @@ if __name__ == "__main__":
     while True:
         query = takeCommand().lower()
         # Logic to execute tasks based on query
+
+        if 'wikipedia' in query:
+            speak('Searching Wikipedia')
+            query = query.replace('wikipedia', '')
+            results = wiki.summary(query, sentences=2)
+            speak("According to wikipedia,")
+            speak(results)
