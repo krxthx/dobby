@@ -75,7 +75,7 @@ def takeCommand():
         webbrowser.open('stackoverflow.com')
         # break
 
-    # Open StackOverflow.
+    # Open Google.
     elif 'open google' in query:
         speak("Okay. Google opening now.")
         webbrowser.open('google.com')
@@ -83,6 +83,10 @@ def takeCommand():
     # Random jokes
     elif 'joke' in query:
         speak(pyjokes.get_joke())
+
+    # Thank you response
+    elif 'thank you' in query:
+        speak("Anytime!")
 
     # Bye Note.
     elif 'bye' or 'good bye' or 'goodbye' or 'tata' in query:
@@ -92,6 +96,7 @@ def takeCommand():
 
     else:
         speak("I'm sorry, could you please repeat that?")
+
     return query
 
 
