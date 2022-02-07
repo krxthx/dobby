@@ -3,6 +3,7 @@ import speech_recognition as sr
 import datetime
 import wikipedia as wiki
 import webbrowser
+import pyjokes
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -79,6 +80,10 @@ def takeCommand():
         speak("Okay. Google opening now.")
         webbrowser.open('google.com')
 
+    # Random jokes
+    elif 'joke' in query:
+        speak(pyjokes.get_joke())
+
     # Bye Note.
     elif 'bye' or 'good bye' or 'goodbye' or 'tata' in query:
         speak('Call me if you need anything. Have a nice day.')
@@ -87,12 +92,10 @@ def takeCommand():
 
     else:
         speak("I'm sorry, could you please repeat that?")
-
     return query
 
 
 if __name__ == "__main__":
     greeting()
     while True:
-        # query = takequery().lower()
         takeCommand()
