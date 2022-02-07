@@ -4,6 +4,7 @@ import datetime
 import wikipedia as wiki
 import webbrowser
 import pyjokes
+import pywhatkit
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -27,7 +28,7 @@ def greeting():
 
 
 def takeCommand():
-    ''' It takes microphone i/p from user and gives a string o/p '''
+    # It takes microphone i/p from user and gives a string o/p
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Clearing background noises...Please wait")
@@ -88,11 +89,17 @@ def takeCommand():
     elif 'thank you' in query:
         speak("Anytime!")
 
+    # Play some music
+    if 'play' in query:
+        song = query.replace('play', '')
+        speak('playing ' + song)
+        pywhatkit.playonyt(song)
+
     # Bye Note.
     elif 'bye' or 'good bye' or 'goodbye' or 'tata' in query:
         speak('Call me if you need anything. Have a nice day.')
         speak('Bye!')
-        exit()
+        # exit()
 
     else:
         speak("I'm sorry, could you please repeat that?")
